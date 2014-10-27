@@ -30,9 +30,6 @@ public function getEdu() {
 	return $this->Education;
 }
 
-public function GeneralGet() {
-	$allArray = array('Name' => $this->getName() , 'Phone Number' => $this->getTele() , 'Location' => $this-getLocation());
-	return $allArray;
-}
+
 
 }
