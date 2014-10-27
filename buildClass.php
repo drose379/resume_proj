@@ -2,7 +2,7 @@
 
 class displayBot {
 
-protected $complete = array();
+
 
 public function compile( $resData ) {
 	$this->resume = $resData;
@@ -13,11 +13,9 @@ $header = array( "Name" => $this->resume->getName(), "Telephone" => $this->resum
 
 foreach ($header as $key => $data) {
 	
-	if (is_string($data)) {$string[] = $key . $data;}
+if (is_string($data)) {$string[] = $key . $data;}
 	
-
 if ( is_array($data) ) {
-	
 	foreach ( $data as $specific ) {$string[] = $specific;}
 }
 

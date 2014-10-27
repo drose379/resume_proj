@@ -3,7 +3,7 @@
 class Resume {
 	protected $Name;
 	protected $Tele;
-	protected $Location = array();
+	protected $Location = array("Country" => null , "State" => null , "City" => null , "Address" => null);
 	protected $Education = array();
 	protected $Experience = array();
 	protected $Skills = array();
