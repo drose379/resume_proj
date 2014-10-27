@@ -14,7 +14,9 @@ $header = array( "Name" => $this->resume->getName(), "Telephone" => $this->resum
 foreach ($header as $key => $data) {
 	$string[] = $key . $data;
 
-
+if ( is_array($data) ) {
+	
+}
 
 
 }
