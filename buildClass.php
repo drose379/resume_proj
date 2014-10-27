@@ -15,7 +15,9 @@ foreach ($header as $key => $data) {
 	$string[] = $key . $data;
 
 if ( is_array($data) ) {
-	
+	foreach ( $data as $specific ) {
+		$string[] = $specific;
+	}
 }
 
 
