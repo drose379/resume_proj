@@ -24,7 +24,6 @@ if ( strlen($value) > 30 === false ) {throw new Exception("Value exceeds char li
 if ( ctype_alpha($value) === false ) {throw new Exception("Value may only be letters and numbers");}
 }
 return true;
-
 }
 
 
@@ -32,11 +31,17 @@ return true;
 public function setLocation(array $location) {
 	foreach ($this->Location as $key => $value) {
 
-		if ( method_exists($this, "validate$key") ) {
+	if ( method_exists($this, "validate$key") ) {
+		try {
 			$methodName = "validate$key"; 
 			$this->$methodName($location[$key]); 
+	} 
+catch (Exception $e) {
+				
+			}//end catch
 			} 
-		$this->Location[$key] = $location['$key'];
+
+	$this->Location[$key] = $location['$key'];
 	}
 }
 
