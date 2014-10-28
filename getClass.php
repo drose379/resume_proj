@@ -20,25 +20,23 @@ public function __construct(array $fullInfo) {
 //All validators
 public function validateCountry($value) {
 if ( is_string($value) ) {
-if ( strlen($value) > 30 === false ) {throw new Exception("Value exceeds char limit");}
-if ( ctype_alpha($value) === false ) {throw new Exception("Value may only be letters and numbers");}
+if ( strlen($value) > 30 === true ) {throw new Exception("Value exceeds char limit");}
+if ( preg_match(pattern, $value) === false ) {throw new Exception("Value may only be letters and numbers");}
 }
-return true;
 }
 
 
 //All Setters
 public function setLocation(array $location) {
 	foreach ($this->Location as $key => $value) {
-
-
-		try {
+	try {
 			$methodName = "validate$key"; 
 			$this->$methodName($location[$key]); 
 			$this->Location[$key] = $location[$key];
-	} 
-catch (Exception $e) {}
+		} 
 
+catch (Exception $e) {echo "Bad value for " . $key;}
+	
 	}
 }
 
