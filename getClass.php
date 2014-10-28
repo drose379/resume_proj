@@ -31,17 +31,14 @@ return true;
 public function setLocation(array $location) {
 	foreach ($this->Location as $key => $value) {
 
-	if ( method_exists($this, "validate$key") ) {
+
 		try {
 			$methodName = "validate$key"; 
 			$this->$methodName($location[$key]); 
+			$this->Location[$key] = $location[$key];
 	} 
-catch (Exception $e) {
-				
-			}//end catch
-			} 
+catch (Exception $e) {}
 
-	$this->Location[$key] = $location['$key'];
 	}
 }
 
