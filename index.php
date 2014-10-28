@@ -1,7 +1,7 @@
 <?php
 
 require( 'getClass.php' );
-require( 'buildClass.php' );
+//require( 'buildClass.php' );
 
 $resume = new Resume (array (
 	"Name" => "Roger",
@@ -13,11 +13,8 @@ $resume = new Resume (array (
 	)
 );
 
-$displayBot = new displayBot;
 
-$displayBot->compile($resume);
 
-echo $displayBot->buildHeader();
 
 
 

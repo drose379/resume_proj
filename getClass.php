@@ -12,10 +12,35 @@ class Resume {
 public function __construct(array $fullInfo) {
 	$this->Name = $fullInfo['Name'];
 	$this->Tele = $fullInfo['Tele'];
-	$this->Location = $fullInfo['Location'];
+	$this->setLocation($fullInfo['Location']);
 	$this->Education = $fullInfo['Education'];
 	$this->Experience = $fullInfo['Work Experience'];
 	$this->Skills = $fullInfo['Skills'];
+}
+//All validators
+public function validateCountry($value) {
+
+if ( strlen($value) > 30 == false ) {throw new Exception("Value exceeds char limit");}
+if ( ctype_alpha($value) == false ) {throw new Exception("Value may only be letters and numbers");}
+	
+return true;
+
+}
+
+
+//All Setters
+public function setLocation(array $location) {
+	foreach ($this->Location as $key => $value) {
+
+		if ( method_exists($this, "validate$key") ) {
+			$methodName = "validate$key"; 
+
+		if ( ! $this->$methodName("$location[$key]") ) {
+			throw new Exception("Incorrect value for $key");
+			} 
+			} 
+		$this->Location[$key] = $location['$key'];
+	}
 }
 
 //All Getters
