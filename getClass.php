@@ -19,10 +19,10 @@ public function __construct(array $fullInfo) {
 }
 //All validators
 public function validateCountry($value) {
-
-if ( strlen($value) > 30 == false ) {throw new Exception("Value exceeds char limit");}
-if ( ctype_alpha($value) == false ) {throw new Exception("Value may only be letters and numbers");}
-	
+if ( is_string($value) ) {
+if ( strlen($value) > 30 === false ) {throw new Exception("Value exceeds char limit");}
+if ( ctype_alpha($value) ===false ) {throw new Exception("Value may only be letters and numbers");}
+}
 return true;
 
 }
@@ -34,10 +34,7 @@ public function setLocation(array $location) {
 
 		if ( method_exists($this, "validate$key") ) {
 			$methodName = "validate$key"; 
-
-		if ( ! $this->$methodName("$location[$key]") ) {
-			throw new Exception("Incorrect value for $key");
-			} 
+			$this->$methodName($location[$key]); 
 			} 
 		$this->Location[$key] = $location['$key'];
 	}
