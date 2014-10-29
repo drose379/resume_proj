@@ -21,7 +21,7 @@ public function __construct(array $fullInfo) {
 public function validateCountry($value) {
 if ( is_string($value) ) {
 if ( strlen($value) > 30 === true ) {throw new Exception("Value exceeds char limit");}
-if ( preg_match(pattern, $value) === false ) {throw new Exception("Value may only be letters and numbers");}
+if ( preg_match('/foo/', $value) === 1 ) {throw new Exception("Value may only be letters and numbers");}
 }
 }
 
@@ -30,9 +30,9 @@ if ( preg_match(pattern, $value) === false ) {throw new Exception("Value may onl
 public function setLocation(array $location) {
 	foreach ($this->Location as $key => $value) {
 	try {
-			$methodName = "validate$key"; 
-			$this->$methodName($location[$key]); 
-			$this->Location[$key] = $location[$key];
+		$methodName = "validate$key"; 
+		$this->$methodName($location[$key]); 
+		$this->Location[$key] = $location[$key];
 		} 
 
 catch (Exception $e) {echo "Bad value for " . $key;}
