@@ -9,7 +9,7 @@ class Resume {
 	protected $Skills = array();
 
 	//Validate arrays
-	protected $LocationCheck = array('Country' => 'validateNoNumber','State' => 'validateNoNumber','City' );
+	protected $LocationCheck = array('Country' => 'validateNoNumber','State' => 'validateNoNumber', 'City' => 'validateNoNumber', 'Address' => 'validateNoNumber');
 
 
 public function __construct(array $fullInfo) {
@@ -32,17 +32,19 @@ if ( preg_match('/([0-9]+)/', $value) === 1 ) {throw new Exception("Value may on
 //All Setters
 public function setLocation(array $location) {
 	foreach ($this->Location as $key => $value) {
-	foreach ( $this->LocationCheck as $property => $validator ) {
+	foreach ($this->LocationCheck as $property => $validator) {
 
 	try {
 		$this->$validator( $location[$key] );
 		$this->Location[$key] = $location[$key];
 		}
-		catch (Exception $e) {echo "Bad value for" . $key;}
-	
 
-}	
+catch (Exception $e) {echo "Bad value for" . $key;}	
+
 }
+
+}
+
 }
 
 //All Getters
