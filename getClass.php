@@ -21,7 +21,7 @@ public function __construct(array $fullInfo) {
 public function validateCountry($value) {
 if ( is_string($value) ) {
 if ( strlen($value) > 30 === true ) {throw new Exception("Value exceeds char limit");}
-if ( preg_match('/foo/', $value) === 1 ) {throw new Exception("Value may only be letters and numbers");}
+if ( preg_match('/([0-9]+)/', $value) === 1 ) {throw new Exception("Value may only be letters and numbers");}
 }
 }
 
