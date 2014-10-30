@@ -21,7 +21,7 @@ public function __construct(array $fullInfo) {
 	$this->Skills = $fullInfo['Skills'];
 }
 //All validators
-public function validateNoNum($value) {
+public function validateNoNumber($value) {
 if ( is_string($value) ) {
 if ( strlen($value) > 30 === true ) {throw new Exception("Value exceeds char limit");}
 if ( preg_match('/([0-9]+)/', $value) === 1 ) {throw new Exception("Value may only be letters and numbers");}
@@ -34,7 +34,7 @@ public function setLocation(array $location) {
 
 if (in_array($key,$this->StringOnly)) {
 	try {
-		$methodName = "validateNoNum"; 
+		$methodName = "validateNoNumber"; 
 		$this->$methodName($location[$key]); 
 		$this->Location[$key] = $location[$key];
 		} 
