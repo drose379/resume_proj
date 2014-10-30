@@ -8,6 +8,9 @@ class Resume {
 	protected $Experience = array();
 	protected $Skills = array();
 
+	//Validate arrays
+	protected $StringOnly = array('Country','State','City');
+
 
 public function __construct(array $fullInfo) {
 	$this->Name = $fullInfo['Name'];
@@ -18,24 +21,29 @@ public function __construct(array $fullInfo) {
 	$this->Skills = $fullInfo['Skills'];
 }
 //All validators
-public function validateCountry($value) {
+public function validateNoNum($value) {
 if ( is_string($value) ) {
 if ( strlen($value) > 30 === true ) {throw new Exception("Value exceeds char limit");}
 if ( preg_match('/([0-9]+)/', $value) === 1 ) {throw new Exception("Value may only be letters and numbers");}
 }
 }
 
-
 //All Setters
 public function setLocation(array $location) {
 	foreach ($this->Location as $key => $value) {
+
+if (in_array($key,$this->StringOnly)) {
 	try {
-		$methodName = "validate$key"; 
+		$methodName = "validateNoNum"; 
 		$this->$methodName($location[$key]); 
 		$this->Location[$key] = $location[$key];
 		} 
+		catch (Exception $e) {echo "Bad value for " . $key;}
+}
 
-catch (Exception $e) {echo "Bad value for " . $key;}
+	
+
+
 	
 	}
 }
