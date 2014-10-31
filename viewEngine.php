@@ -13,7 +13,7 @@ public function attach( $key,$content ) {
 }
 
 public function view() {
-	extract ($this->Content);
+	extract($this->Content);
 	$output = require $this->Template;
 	return $output;
 }

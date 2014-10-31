@@ -16,7 +16,7 @@ $resume = new Resume (array (
 );
 
 $Display->attach("Test", "Hello world");
-$Display->view();
+echo $Display->view();
 
 
 
