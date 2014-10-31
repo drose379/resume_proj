@@ -34,12 +34,16 @@ public function setLocation(array $location) {
 	foreach ($this->Location as $key => $value) {
 	foreach ($this->LocationCheck as $property => $validator) {
 
-	try {
+		if ( $key === $property ) {
+		try {
 		$this->$validator( $location[$key] );
 		$this->Location[$key] = $location[$key];
 		}
+		catch (Exception $e) {echo "Bad value for" . $key;}	
+	}
+	
 
-catch (Exception $e) {echo "Bad value for" . $key;}	
+
 
 }
 
