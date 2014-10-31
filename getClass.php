@@ -9,7 +9,7 @@ class Resume {
 	protected $Skills = array();
 
 	//Validate arrays
-	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'SmallString');
+	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
 
 
 public function __construct(array $fullInfo) {
@@ -24,18 +24,17 @@ public function __construct(array $fullInfo) {
 //All validators
 public function NoNumberValid($value) {
 if ( is_string($value) ) {
-
-if ( preg_match('/([0-9]+)/', $value) === 1 ) {
+	if ( preg_match('/([0-9]+)/', $value) === 1 ) {
 	throw new Exception("Value may only be letters");
 	}
 }
 }
 
-public function SmallString() {
-	if ( is_string($value) ) {
+public function Under30Valid($value) {
+if ( is_string($value) ) {
 	if ( strlen($value) > 30 === true ) {
-		throw new Exception("Value exceeds char limit");
-		}
+	throw new Exception("Value exceeds char limit");
+	}
 }
 }
 
@@ -49,7 +48,7 @@ public function setLocation(array $location) {
 		$this->$validator( $location[$key] );
 		$this->Location[$key] = $location[$key];
 		}	
-	catch (Exception $e) {echo "Bad value for" . $key;}	
+	catch (Exception $e) {echo "Bad value for " . $key;}	
 	}
 	
 }
