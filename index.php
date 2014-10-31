@@ -1,7 +1,9 @@
 <?php
 
-require( 'getClass.php' );
-//require( 'buildClass.php' );
+require('getClass.php');
+require('viewEngine.php');
+
+$Display = new viewEngine('temp1.php'); 
 
 $resume = new Resume (array (
 	"Name" => "Roger",
@@ -12,6 +14,9 @@ $resume = new Resume (array (
 	"Skills" => array("Web Development (PHP Object Oriented)" , "Database Management (MYSQL and MYSQLI)")
 	)
 );
+
+$Display->attach("Test", "Hello world");
+$Display->view();
 
 
 
