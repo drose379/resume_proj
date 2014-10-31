@@ -9,7 +9,7 @@ class Resume {
 	protected $Skills = array();
 
 	//Validate arrays
-	protected $LocationCheck = array('Country' => 'validateNoNumber','State' => 'validateNoNumber', 'City' => 'validateNoNumber', 'Address' => 'validateNoNumber');
+	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'SmallString');
 
 
 public function __construct(array $fullInfo) {
@@ -22,10 +22,20 @@ public function __construct(array $fullInfo) {
 }
 
 //All validators
-public function validateNoNumber($value) {
+public function NoNumberValid($value) {
 if ( is_string($value) ) {
-if ( strlen($value) > 30 === true ) {throw new Exception("Value exceeds char limit");}
-if ( preg_match('/([0-9]+)/', $value) === 1 ) {throw new Exception("Value may only be letters and numbers");}
+
+if ( preg_match('/([0-9]+)/', $value) === 1 ) {
+	throw new Exception("Value may only be letters");
+	}
+}
+}
+
+public function SmallString() {
+	if ( is_string($value) ) {
+	if ( strlen($value) > 30 === true ) {
+		throw new Exception("Value exceeds char limit");
+		}
 }
 }
 
@@ -38,13 +48,10 @@ public function setLocation(array $location) {
 		try {
 		$this->$validator( $location[$key] );
 		$this->Location[$key] = $location[$key];
-		}
-		catch (Exception $e) {echo "Bad value for" . $key;}	
+		}	
+	catch (Exception $e) {echo "Bad value for" . $key;}	
 	}
 	
-
-
-
 }
 
 }
