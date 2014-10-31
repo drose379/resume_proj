@@ -9,77 +9,70 @@ class Resume {
 	protected $Skills = array();
 
 	//Validate arrays
-	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
+	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'SmallString');
 
-
-public function __construct(array $fullInfo) {
-	$this->Name = $fullInfo['Name'];
-	$this->Tele = $fullInfo['Tele'];
-	$this->setLocation($fullInfo['Location']);
-	$this->Education = $fullInfo['Education'];
-	$this->Experience = $fullInfo['Work Experience'];
-	$this->Skills = $fullInfo['Skills'];
-}
-
-//All validators
-public function NoNumberValid($value) {
-if ( is_string($value) ) {
-	if ( preg_match('/([0-9]+)/', $value) === 1 ) {
-	throw new Exception("Value may only be letters");
+	public function __construct(array $fullInfo) {
+		$this->Name = $fullInfo['Name'];
+		$this->Tele = $fullInfo['Tele'];
+		$this->setLocation($fullInfo['Location']);
+		$this->Education = $fullInfo['Education'];
+		$this->Experience = $fullInfo['Work Experience'];
+		$this->Skills = $fullInfo['Skills'];
 	}
-}
-}
 
-public function Under30Valid($value) {
-if ( is_string($value) ) {
-	if ( strlen($value) > 30 === true ) {
-	throw new Exception("Value exceeds char limit");
+	//All validators
+	public function NoNumberValid($value) {
+		if ( is_string($value) ) {
+			if ( preg_match('/([0-9]+)/', $value) === 1 ) {
+				throw new Exception("Value may only be letters");
+			}
+		}
 	}
-}
-}
 
-//All Setters
-public function setLocation(array $location) {
-	foreach ($this->Location as $key => $value) {
-	foreach ($this->LocationCheck as $property => $validator) {
-
-		if ( $key === $property ) {
-		try {
-		$this->$validator( $location[$key] );
-		$this->Location[$key] = $location[$key];
-		}	
-	catch (Exception $e) {echo "Bad value for " . $key;}	
+	public function SmallString() {
+		if ( is_string($value) ) {
+			if ( strlen($value) > 30 === true ) {
+				throw new Exception("Value exceeds char limit");
+			}
+		}
 	}
-	
-}
 
-}
+	//All Setters
+	public function setLocation(array $location) {
+		foreach ($this->Location as $key => $value) {
+			foreach ($this->LocationCheck as $property => $validator) {
+				if ( $key === $property ) {
+					try {
+						$this->$validator( $location[$key] );
+						$this->Location[$key] = $location[$key];
+					}	
+					catch (Exception $e) {echo "Bad value for" . $key;}	
+				}
+		
+			}
 
-}
+		}
 
-//All Getters
-public function getName() {
-	return $this->Name;
-}
+	}
 
-public function getTele() {
-	return $this->Tele;
-}
-
-public function getLocation() {
-	return $this->Location;
-}
-
-public function getEdu() {
-	return $this->Education;
-}
-
-public function getExp() {
-	return $this->Experience;
-}
-
-public function getSkills() {
-	return $this->Skills;
-}
+	//All Getters
+	public function getName() {
+		return $this->Name;
+	}
+	public function getTele() {
+		return $this->Tele;
+	}
+	public function getLocation() {
+		return $this->Location;
+	}
+	public function getEdu() {
+		return $this->Education;
+	}
+	public function getExp() {
+		return $this->Experience;
+	}
+	public function getSkills() {
+		return $this->Skills;
+	}
 
 }
