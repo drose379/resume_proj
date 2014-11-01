@@ -71,7 +71,7 @@ public function setEducation(array $education) {
 		else if (is_array($value)) {
 			try {
 				foreach ( $value as $propName => $val ) {
-					//$this->$validator($value[$propName]);
+					$this->$validator($value[$propName]);
 					$this->Education[$key][$propName] = $value[$propName];
 				}
 			}
