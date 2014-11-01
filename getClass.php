@@ -4,19 +4,19 @@ class Resume {
 	protected $Name;
 	protected $Tele;
 	protected $Location = array("Country" => null , "State" => null , "City" => null , "Address" => null);
-	protected $Education = array("YearsOfAttendance" => null, "Activities" => null, "FurtherEducation" => null);
+	protected $Education = array("YearsOfAttendance" => null, "Activities" => array(), "FurtherEducation" => array());
 	protected $Experience = array();
 	protected $Skills = array();
 
 	//Validate arrays
 	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
-	protected $EducationCheck = array('YearsOfAttendance' => 'Under30Valid',"Activities" => null, "FurtherEducation" => null);
+	protected $EducationCheck = array("YearsOfAttendance" => "Under30Valid","Activities" => "NoNumberValid", "FurtherEducation" => "NoNumberValid");
 
 public function __construct(array $fullInfo) {
 	$this->Name = $fullInfo['Name'];
 	$this->Tele = $fullInfo['Tele'];
 	$this->setLocation($fullInfo['Location']);
-	$this->Education = $fullInfo['Education'];
+	$this->setEducation($fullInfo['Education']);
 	$this->Experience = $fullInfo['Work Experience'];
 	$this->Skills = $fullInfo['Skills'];
 }
@@ -57,7 +57,31 @@ public function setLocation(array $location) {
 
 }
 
-public function setEducation(array $education) {}
+public function setEducation(array $education) {
+	foreach ($education as $key => $value){
+	foreach ($this->EducationCheck as $property => $validator) {
+		if ( $key === $property ) {
+		if ( is_string($value) ) {
+			try {
+				$this->$validator( $education[$key] );
+				$this->Education[$key] = $education[$key];
+			}
+			catch (Excepton $e) {echo "Bad value for " . $key;}
+			}
+		else if (is_array($value)) {
+			try {
+				foreach ( $value as $propName => $val ) {
+					//$this->$validator($value[$propName]);
+					$this->Education[$propName] = $value[$propName];
+				}
+				
+			}
+			catch (Exception $e) {echo "Bad value for " . $key;}
+				}
+			}
+		}
+	}
+}
 
 //All Getters
 public function getName() {
@@ -74,8 +98,8 @@ public function getLocation() {
 	return implode(" ",$Items);
 }
 
-public function getEdu() {
-	return $this->Education;
+public function getEducation() {
+	var_dump($this->Education);
 }
 
 public function getExp() {
