@@ -2,7 +2,7 @@
 
 $HTML = <<< HTML
 
-<h1>$Test</h1>
+<p>$Array</p>
 
 HTML;
 

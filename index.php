@@ -5,7 +5,7 @@ require('viewEngine.php');
 
 $Display = new viewEngine('temp1.php'); 
 
-$resume = new Resume (array (
+$Resume = new Resume (array (
 	"Name" => "Roger",
 	"Tele" => "792-882-4431",
 	"Location" => array('Country' => 'United States' , 'State' => 'Texas' , 'City' => 'Fort Worth' , 'Address' => '15 Long Blvd'),
@@ -16,6 +16,7 @@ $resume = new Resume (array (
 );
 
 $Display->attach("Test", "Hello world");
+$Display->attach("Array",$Resume->getLocation());
 echo $Display->view();
 
 
