@@ -72,9 +72,8 @@ public function setEducation(array $education) {
 			try {
 				foreach ( $value as $propName => $val ) {
 					//$this->$validator($value[$propName]);
-					$this->Education[$propName] = $value[$propName];
+					$this->Education[$key][$propName] = $value[$propName];
 				}
-				
 			}
 			catch (Exception $e) {echo "Bad value for " . $key;}
 				}
