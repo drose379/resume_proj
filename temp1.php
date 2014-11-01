@@ -2,7 +2,7 @@
 
 $HTML = <<< HTML
 
-<span>$LocationInfo</span>
+
 
 HTML;
 

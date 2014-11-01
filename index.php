@@ -15,7 +15,6 @@ $Resume = new Resume (array (
 	)
 );
 
-$Display->attach("Test", "Hello world");
 $Display->attach("LocationInfo",$Resume->getLocation());
 echo $Display->view();
 

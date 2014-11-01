@@ -4,13 +4,13 @@ class Resume {
 	protected $Name;
 	protected $Tele;
 	protected $Location = array("Country" => null , "State" => null , "City" => null , "Address" => null);
-	protected $Education = array();
+	protected $Education = array("YearsOfAttendance" => null, "Activities" => null, "FurtherEducation" => null);
 	protected $Experience = array();
 	protected $Skills = array();
 
 	//Validate arrays
 	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
-
+	protected $EducationCheck = array('YearsOfAttendance' => 'Under30Valid',"Activities" => null, "FurtherEducation" => null);
 
 public function __construct(array $fullInfo) {
 	$this->Name = $fullInfo['Name'];
@@ -56,6 +56,8 @@ public function setLocation(array $location) {
 	}
 
 }
+
+public function setEducation(array $education) {}
 
 //All Getters
 public function getName() {
