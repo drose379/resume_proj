@@ -26,16 +26,16 @@ public function NoNumberValid($value) {
 if ( is_string($value) ) {
 	if ( preg_match('/([0-9]+)/', $value) === 1 ) {
 	throw new Exception("Value may only be letters");
+		}
 	}
-}
 }
 
 public function Under30Valid($value) {
 if ( is_string($value) ) {
 	if ( strlen($value) > 30 === true ) {
 	throw new Exception("Value exceeds char limit");
+		}
 	}
-}
 }
 
 //All Setters
@@ -43,17 +43,17 @@ public function setLocation(array $location) {
 	foreach ($this->Location as $key => $value) {
 	foreach ($this->LocationCheck as $property => $validator) {
 
-		if ( $key === $property ) {
+	if ( $key === $property ) {
 		try {
 		$this->$validator( $location[$key] );
 		$this->Location[$key] = $location[$key];
 		}	
-	catch (Exception $e) {echo "Bad value for " . $key;}	
-	}
+		catch (Exception $e) {echo "Bad value for " . $key;}	
+		}
 	
-}
+		}
 
-}
+	}
 
 }
 
