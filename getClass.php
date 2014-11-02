@@ -58,15 +58,15 @@ public function setLocation(array $location) {
 }
 
 public function setEducation(array $education) {
-	$tempArray = [];
-foreach ( $education as $key => $value ) {
+$tempArray = [];
 foreach ($this->EducationCheck as $property => $validator) {
+	if (isset($education[$property])) {
 	try {
-			//$this->$validator($education[$key]);
-			$tempArray[$key] = $education[$key];
+			$tempArray[$property] = $education[$property];
 		}
-	catch (Exception $e) {"Bad value for" . $key;}
-		}
+		catch (Exception $e) {"Bad value for" . $key;}
+	} 
+	else {$education{$property} = null;}
 	}
 	$this->Education = $tempArray;
 }
