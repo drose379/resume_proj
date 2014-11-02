@@ -137,6 +137,7 @@ public function getEducation() {
 	//Add the value for that key to the innerloop
 	//Add innerloop to outerloop with $outerloop[] = implode(innerloop)
 	//Return the imploded outerloop
+	//Output: Year of Attendance: 2010-2919,Activities: soccer,hockey,lacrosse, Further Education: Degree:Masters, College: University of
 }
 
 public function getExperience() {
