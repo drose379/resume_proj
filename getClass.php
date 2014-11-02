@@ -11,14 +11,16 @@ class Resume {
 	//Validate arrays
 	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
 	protected $EducationCheck = array("YearsOfAttendance" => "Under30Valid","Activities" => "NoNumberValid", "FurtherEducation" => "NoNumberValid");
+	protected $ExperienceCheck = array("YearsOfEmployment" => "Under30Valid","Position" => "NoNumberValid","JobDescription" => "NoNumberValid","CompanyInfo" => "Under30Valid");
+	protected $SkillsCheck = array("NoNumberValid");
 
 public function __construct(array $fullInfo) {
 	$this->Name = $fullInfo['Name'];
 	$this->Tele = $fullInfo['Tele'];
 	$this->setLocation($fullInfo['Location']);
 	$this->setEducation($fullInfo['Education']);
-	$this->Experience = $fullInfo['Work Experience'];
-	$this->Skills = $fullInfo['Skills'];
+	$this->setExperience($fullInfo['Work Experience']);
+	$this->setSkills($fullInfo['Skills']);
 }
 
 //All validators
@@ -77,6 +79,32 @@ foreach ($this->EducationCheck as $property => $validator) {
 	$this->Education = $tempArray;
 }
 
+public function setExperience(array $experience) {
+	$tempArray = [];
+foreach ($this->ExperienceCheck as $property => $validator) {
+	$value = isset($experience[$property]);
+	try {
+		$this->$validator($experience[$property]);
+		$tempArray[$property] = $experience[$property];
+	}
+	catch (Exception $e) {}
+}
+	$this->Experience = $tempArray;
+}
+
+public function setSkills(array $skills) {
+	$tempArray = [];
+foreach ($skills as $skill) {
+foreach ($this->SkillsCheck as $validator) {
+	try {
+	$this->$validator($skill);
+	$tempArray[] = $skill;
+	}
+	catch (Exception $e) {}
+}
+}
+$this->Skills = $tempArray;
+}
 
 //All Getters
 public function getName() {
@@ -94,15 +122,15 @@ public function getLocation() {
 }
 
 public function getEducation() {
-	var_dump($this->Education);
+
 }
 
-public function getExp() {
-	return $this->Experience;
+public function getExperience() {
+
 }
 
 public function getSkills() {
-	return $this->Skills;
+	var_dump($this->Skills);
 }
 
 }
