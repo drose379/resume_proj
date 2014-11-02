@@ -62,9 +62,9 @@ public function setEducation(array $education) {
 foreach ( $education as $key => $value ) {
 foreach ($this->EducationCheck as $property => $validator) {
 	try {
-		$this->$validator($education[$key]);
-		$this->tempArray[$key] = $education[$key]; 
-	}
+			//$this->$validator($education[$key]);
+			$tempArray[$key] = $education[$key];
+		}
 	catch (Exception $e) {"Bad value for" . $key;}
 		}
 	}
@@ -88,7 +88,7 @@ public function getLocation() {
 }
 
 public function getEducation() {
-	//var_dump($this->Education);
+	var_dump($this->Education);
 }
 
 public function getExp() {
