@@ -40,7 +40,7 @@ public function NoNumberValid($value) {
 }
 
 public function Under30Valid($value) {
-
+if ($value === null) {return;}
 if ( is_string($value) ) {
 	if ( strlen($value) > 30 === true ) {
 	throw new Exception("Value exceeds char limit");
@@ -78,12 +78,18 @@ public function setLocation(array $location) {
 public function setEducation(array $education) {
 	$tempArray = [];
 foreach ($this->EducationCheck as $property => $validator) {
-	$value = isset($education[$property]);
+	if (isset($education[$property])) {
+		$value = $education[$property];
 		try {
-			//$this->$validator($education[$property]);
-			$tempArray[$property] = $education[$property];
+			$this->$validator($value);
+			$tempArray[$property] = $value;
 		}
 		catch (Exception $e) {}
+	} 
+	else {
+		$value = null;
+	}
+		
 }
 	$this->Education[] = $tempArray;
 }
