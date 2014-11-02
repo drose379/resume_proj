@@ -12,7 +12,7 @@ class Resume {
 	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
 	protected $EducationCheck = array("YearsOfAttendance" => "Under30Valid","Activities" => "NoNumberValid", "FurtherEducation" => "NoNumberValid");
 	protected $ExperienceCheck = array("YearsOfEmployment" => "Under30Valid","Position" => "NoNumberValid","JobDescription" => "NoNumberValid","CompanyInfo" => "Under30Valid");
-	protected $SkillsCheck = array("NoNumberValid");
+	protected $SkillsCheck = array("Under150Valid");
 
 public function __construct(array $fullInfo) {
 	$this->Name = $fullInfo['Name'];
@@ -45,6 +45,14 @@ if ( is_string($value) ) {
 	throw new Exception("Value exceeds char limit");
 		}
 	}
+}
+
+public function Under150Valid($value) {
+if ( is_string($value) ) {
+if ( strlen($value) > 150 === true ) {
+	throw new Exception("Value exceeds char limit");
+}
+}
 }
 
 //All Setters
@@ -122,7 +130,19 @@ public function getLocation() {
 }
 
 public function getEducation() {
+	foreach ($this->Education as $key => $value) {
+		if (is_array($value)) {
+			$outerLoop[] = $key;
+		foreach ($value as $innerKey => $val) {
+			$outerLoop[] = $innerKey . $val;
+		}
 
+		}
+		else {
+			$outerLoop[] = $key . $value;
+		}
+	}
+	return implode("//",$outerLoop);
 }
 
 public function getExperience() {
@@ -130,7 +150,7 @@ public function getExperience() {
 }
 
 public function getSkills() {
-	var_dump($this->Skills);
+	
 }
 
 }

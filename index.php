@@ -15,10 +15,9 @@ $Resume = new Resume (array (
 	)
 );
 
-$Display->attach("LocationInfo",$Resume->getLocation());
-$Display->attach("EducationInfo", $Resume->getEducation());
-$Display->attach("Experience",$Resume->getExperience());
-$Display->attach("Skills",$Resume->getSkills());
+$Display->attach("Name",$Resume->getName());
+$Display->attach("Location",$Resume->getLocation());
+$Display->attach("Education",$Resume->getEducation());
 echo $Display->view();
 
 
