@@ -72,7 +72,7 @@ foreach ($this->EducationCheck as $property => $validator) {
 			$this->$validator($education[$property]);
 			$tempArray[$property] = $education[$property];
 		}
-		catch (Exception $e) {"Bad value for" . $key;}
+		catch (Exception $e) {}
 }
 	$this->Education = $tempArray;
 }
