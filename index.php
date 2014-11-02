@@ -2,10 +2,11 @@
 
 require('getClass.php');
 require('viewEngine.php');
+require('asHTMLclass.php');
 
 $Display = new viewEngine('temp1.php'); 
 
-$Resume = new Resume (array (
+$Resume = new HTMLResume (array (
 	"Name" => "Roger",
 	"Tele" => "792-882-4431",
 	"Location" => array('Country' => 'United States' , 'State' => 'Texas' , 'City' => 'Fort Worth' , 'Address' => '15 Long Blvd'),

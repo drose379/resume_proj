@@ -136,7 +136,7 @@ public function getLocation() {
 }
 
 public function getEducation() {
-
+	return $this->Education;
 }
 
 public function getExperience() {
