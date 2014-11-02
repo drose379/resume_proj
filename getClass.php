@@ -88,7 +88,7 @@ foreach ($this->EducationCheck as $property => $validator) {
 		$this->$validator($value);
 		$tempArray[$property] = $value;
 	}
-		catch (Exception $e) {}
+	catch(Exception $e) {}
 }
 	$this->Education[] = $tempArray;
 }

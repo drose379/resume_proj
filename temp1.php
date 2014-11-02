@@ -7,7 +7,6 @@ $HTML = <<< HTML
 <span>$Location</span>
 <br>
 <br>
-<span>$Education</span>
 
 HTML;
 
