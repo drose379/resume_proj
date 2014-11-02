@@ -10,7 +10,7 @@ class Resume {
 
 	//Validate arrays
 	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
-	protected $EducationCheck = array("YearsOfAttendance" => "Under30Valid","Activities" => "NoNumberValid", "FurtherEducation" => "NoNumberValid");
+	protected $EducationCheck = array("YearsOfAttendance" => "Under30Valid","Activities" => "NoNumberValid");
 	protected $ExperienceCheck = array("YearsOfEmployment" => "Under30Valid","Position" => "NoNumberValid","JobDescription" => "NoNumberValid","CompanyInfo" => "Under30Valid");
 	protected $SkillsCheck = array("Under150Valid");
 
@@ -130,15 +130,7 @@ public function getLocation() {
 }
 
 public function getEducation() {
-	foreach($this->Education as $key => $value) {
-		$outerLoop[] = $key;
-		if (is_array($value)) {
-			foreach ($value as $innerKey => $innerValue) {
-				$innerLoop[] = $innerValue;
-			}
-		}
-	}
-	return implode($innerLoop);
+
 }
 
 public function getExperience() {
