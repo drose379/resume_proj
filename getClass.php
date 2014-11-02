@@ -80,16 +80,15 @@ public function setEducation(array $education) {
 foreach ($this->EducationCheck as $property => $validator) {
 	if (isset($education[$property])) {
 		$value = $education[$property];
-		try {
-			$this->$validator($value);
-			$tempArray[$property] = $value;
-		}
-		catch (Exception $e) {}
 	} 
 	else {
 		$value = null;
 	}
-		
+	try {
+			$this->$validator($value);
+			$tempArray[$property] = $value;
+	}
+		catch (Exception $e) {}
 }
 	$this->Education[] = $tempArray;
 }
@@ -137,9 +136,7 @@ public function getLocation() {
 }
 
 public function getEducation() {
-	echo "<pre>";
-	var_dump($this->Education);
-	echo "</pre>";
+
 }
 
 public function getExperience() {
