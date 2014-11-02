@@ -134,7 +134,8 @@ public function getEducation() {
 		$outerLoop[] = $key;
 		if (is_array($value)) {
 			foreach ($value as $innerKey => $innerValue) {
-				$innerLoop[] = $innerKey . $innerValue;
+				$outerLoop[] = $innerKey;
+				$innerLoop[] = $innerValue;
 			}
 		}
 	}
