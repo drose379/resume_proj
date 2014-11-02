@@ -4,7 +4,7 @@ class Resume {
 	protected $Name;
 	protected $Tele;
 	protected $Location = array("Country" => null , "State" => null , "City" => null , "Address" => null);
-	protected $Education = array("YearsOfAttendance" => null, "Activities" => array(), "FurtherEducation" => array());
+	protected $Education = array();
 	protected $Experience = array();
 	protected $Skills = array();
 
@@ -58,29 +58,19 @@ public function setLocation(array $location) {
 }
 
 public function setEducation(array $education) {
-	foreach ($education as $key => $value){
-	foreach ($this->EducationCheck as $property => $validator) {
-		if ( $key === $property ) {
-		if ( is_string($value) ) {
-			try {
-				$this->$validator( $education[$key] );
-				$this->Education[$key] = $education[$key];
-			}
-			catch (Excepton $e) {echo "Bad value for " . $key;}
-			}
-		else if (is_array($value)) {
-			try {
-				foreach ( $value as $propName => $val ) {
-					$this->$validator($value[$propName]);
-					$this->Education[$key][$propName] = $value[$propName];
-				}
-			}
-			catch (Exception $e) {echo "Bad value for " . $key;}
-				}
-			}
+	$tempArray = [];
+foreach ( $education as $key => $value ) {
+foreach ($this->EducationCheck as $property => $validator) {
+	try {
+		$this->$validator($education[$key]);
+		$this->tempArray[$key] = $education[$key]; 
+	}
+	catch (Exception $e) {"Bad value for" . $key;}
 		}
 	}
+	$this->Education = $tempArray;
 }
+
 
 //All Getters
 public function getName() {
@@ -98,7 +88,7 @@ public function getLocation() {
 }
 
 public function getEducation() {
-	var_dump($this->Education);
+	//var_dump($this->Education);
 }
 
 public function getExp() {
