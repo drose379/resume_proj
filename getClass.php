@@ -134,12 +134,11 @@ public function getEducation() {
 		$outerLoop[] = $key;
 		if (is_array($value)) {
 			foreach ($value as $innerKey => $innerValue) {
-				$outerLoop[] = $innerKey;
 				$innerLoop[] = $innerValue;
 			}
 		}
 	}
-	
+	return implode($innerLoop);
 }
 
 public function getExperience() {
