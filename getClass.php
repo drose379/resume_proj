@@ -139,7 +139,7 @@ public function getEducation() {
 			}
 		}
 	}
-	return implode($innerLoop);
+	
 }
 
 public function getExperience() {
