@@ -23,10 +23,17 @@ public function __construct(array $fullInfo) {
 
 //All validators
 public function NoNumberValid($value) {
-if ( is_string($value) ) {
-	if ( preg_match('/([0-9]+)/', $value) === 1 ) {
-	throw new Exception("Value may only be letters");
+	if (is_array($value)) {
+		foreach ($value as $v) {
+			$this->NoNumberValid($v);
 		}
+	}
+	else {
+	if (! is_string($value)) {throw new Exception("Value must be a string");}
+	
+	if (preg_match('/([0-9]+)/', $value) === 1) {
+		throw new Exception("String should not contain numbers");
+	}
 	}
 }
 
@@ -58,16 +65,15 @@ public function setLocation(array $location) {
 }
 
 public function setEducation(array $education) {
-$tempArray = [];
+	$tempArray = [];
 foreach ($this->EducationCheck as $property => $validator) {
-	if (isset($education[$property])) {
-	try {
+	$value = isset($education[$property]);
+		try {
+			$this->$validator($education[$property]);
 			$tempArray[$property] = $education[$property];
 		}
 		catch (Exception $e) {"Bad value for" . $key;}
-	} 
-	else {$education{$property} = null;}
-	}
+}
 	$this->Education = $tempArray;
 }
 
