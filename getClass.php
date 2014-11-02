@@ -130,14 +130,15 @@ public function getLocation() {
 }
 
 public function getEducation() {
-	//Loop over the entire $this->Education array
-	//Make an outerloop with the key Name 
-	//If the value for the array is a nested array, loop over it
-	//Make the key for the nested array into an $innerLoop
-	//Add the value for that key to the innerloop
-	//Add innerloop to outerloop with $outerloop[] = implode(innerloop)
-	//Return the imploded outerloop
-	//Output: Year of Attendance: 2010-2919,Activities: soccer,hockey,lacrosse, Further Education: Degree:Masters, College: University of
+	foreach($this->Education as $key => $value) {
+		$outerLoop[] = $key;
+		if (is_array($value)) {
+			foreach ($value as $innerKey => $innerValue) {
+				$innerLoop[] = $innerKey . $innerValue;
+			}
+		}
+	}
+	return implode($innerLoop);
 }
 
 public function getExperience() {
