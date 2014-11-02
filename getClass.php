@@ -10,7 +10,7 @@ class Resume {
 
 	//Validate arrays
 	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
-	protected $EducationCheck = array("YearsOfAttendance" => "Under30Valid","Activities" => "NoNumberValid");
+	protected $EducationCheck = array("Name" => "Under30Valid","YearsOfAttendance" => "Under30Valid","Activities" => "NoNumberValid", "Major" => "Under30Valid","Degree" => "Under30Valid");
 	protected $ExperienceCheck = array("YearsOfEmployment" => "Under30Valid","Position" => "NoNumberValid","JobDescription" => "NoNumberValid","CompanyInfo" => "Under30Valid");
 	protected $SkillsCheck = array("Under150Valid");
 
@@ -18,7 +18,7 @@ public function __construct(array $fullInfo) {
 	$this->Name = $fullInfo['Name'];
 	$this->Tele = $fullInfo['Tele'];
 	$this->setLocation($fullInfo['Location']);
-	$this->setEducation($fullInfo['Education']);
+	foreach ($fullInfo["Education"] as $education){$this->setEducation($education);}
 	$this->setExperience($fullInfo['Work Experience']);
 	$this->setSkills($fullInfo['Skills']);
 }
@@ -40,6 +40,7 @@ public function NoNumberValid($value) {
 }
 
 public function Under30Valid($value) {
+
 if ( is_string($value) ) {
 	if ( strlen($value) > 30 === true ) {
 	throw new Exception("Value exceeds char limit");
@@ -79,12 +80,12 @@ public function setEducation(array $education) {
 foreach ($this->EducationCheck as $property => $validator) {
 	$value = isset($education[$property]);
 		try {
-			$this->$validator($education[$property]);
+			//$this->$validator($education[$property]);
 			$tempArray[$property] = $education[$property];
 		}
 		catch (Exception $e) {}
 }
-	$this->Education = $tempArray;
+	$this->Education[] = $tempArray;
 }
 
 public function setExperience(array $experience) {
@@ -130,7 +131,9 @@ public function getLocation() {
 }
 
 public function getEducation() {
-
+	echo "<pre>";
+	var_dump($this->Education);
+	echo "</pre>";
 }
 
 public function getExperience() {
