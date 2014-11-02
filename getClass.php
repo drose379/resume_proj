@@ -130,16 +130,17 @@ public function getLocation() {
 }
 
 public function getEducation() {
+
 	foreach ($this->Education as $key => $value) {
 		if (is_array($value)) {
 			$outerLoop[] = $key;
 		foreach ($value as $innerKey => $val) {
-			$outerLoop[] = $innerKey . $val;
+			$innerLoop[] = $innerKey . $val;
 		}
 
 		}
 		else {
-			$outerLoop[] = $key . $value;
+			//$outerLoop[] = $key . $value;
 		}
 	}
 	return implode("//",$outerLoop);
