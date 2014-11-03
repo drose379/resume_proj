@@ -130,9 +130,7 @@ public function getTele() {
 }
 
 public function getLocation() {
-	$Items = [];
-	foreach ($this->Location as $key => $val) {$Items[] = $key; $Items[] = $val;}
-	return implode(" ",$Items);
+	return $this->Location;
 }
 
 public function getEducation() {
