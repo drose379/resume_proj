@@ -13,13 +13,23 @@ public function LocationFormatted() {
 }
 
 public function EducationFormatted() {
-	//foreach $this->Education as $education to get each array inside $this->Education
-	//foreach $education as $key $value
-	//if is array $value
-	//loop over
-	//assign
-	//else
-	//assign regular value
+	foreach ($this->Education as $education) {
+	foreach ($education as $key => $value) {
+		if (isset($value)) {
+			$outerLoop[] = $key;
+		}
+		if (is_array($value)) {
+			foreach ($value as $v) {
+				$innerLoop[] = $v;
+			}
+		}
+		else {
+			$innerLoop[] = $value;
+		}
+	}
+	}
+	
+	return implode($outerLoop);
 }
 
 
