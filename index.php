@@ -22,6 +22,7 @@ $Resume = new HTMLResume (array (
 
 $Display->attach("Name", $Resume->getName());
 $Display->attach("Tele", $Resume->getTele());
+$Display->attach("test", $Resume->getEducation());
 $Display->attach("Location", $Resume->LocationFormatted());
 $Display->attach("Education", $Resume->EducationFormatted());
 echo $Display->view();
