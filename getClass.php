@@ -11,7 +11,7 @@ class Resume {
 	//Validate arrays
 	protected $LocationCheck = array('Country' => 'NoNumberValid','State' => 'NoNumberValid', 'City' => 'NoNumberValid', 'Address' => 'Under30Valid');
 	protected $EducationCheck = array("Name" => "Under30Valid","YearsOfAttendance" => "Under30Valid","Activities" => "NoNumberValid", "Major" => "Under30Valid","Degree" => "Under30Valid");
-	protected $ExperienceCheck = array("YearsOfEmployment" => "Under30Valid","Position" => "NoNumberValid","JobDescription" => "NoNumberValid","CompanyInfo" => "Under30Valid");
+	protected $ExperienceCheck = array("YearsOfEmployment" => "Under30Valid","Position" => "Under30Valid","JobDescription" => "NoNumberValid","CompanyInfo" => "Under150Valid");
 	protected $SkillsCheck = array("Under150Valid");
 
 public function __construct(array $fullInfo) {
@@ -19,7 +19,7 @@ public function __construct(array $fullInfo) {
 	$this->Tele = $fullInfo['Tele'];
 	$this->setLocation($fullInfo['Location']);
 	foreach ($fullInfo["Education"] as $education){$this->setEducation($education);}
-	$this->setExperience($fullInfo['Work Experience']);
+	foreach ($fullInfo["WorkExperience"] as $experience){$this->setExperience($experience);}
 	$this->setSkills($fullInfo['Skills']);
 }
 
@@ -49,11 +49,15 @@ if ( is_string($value) ) {
 }
 
 public function Under150Valid($value) {
-if ( is_string($value) ) {
-if ( strlen($value) > 150 === true ) {
-	throw new Exception("Value exceeds char limit");
-}
-}
+	if (is_array($value)) {
+		foreach ($value as $v) {
+			$this->Under150Valid($v);
+		}
+	}
+	else {
+		if (! is_string($value)) {throw new Exception("Value must be string");}
+		if (strlen($value) > 150) {throw new Exception("String must be less then 150 chars");}
+	}
 }
 
 //All Setters
@@ -96,14 +100,18 @@ foreach ($this->EducationCheck as $property => $validator) {
 public function setExperience(array $experience) {
 	$tempArray = [];
 foreach ($this->ExperienceCheck as $property => $validator) {
-	$value = isset($experience[$property]);
+	if (isset($experience[$property])) {
+		$value = $experience[$property];
+	} else {
+		$value = null;
+	}
 	try {
-		$this->$validator($experience[$property]);
-		$tempArray[$property] = $experience[$property];
+		$this->$validator($value);
+		$tempArray[$property] = $value;
 	}
 	catch (Exception $e) {}
 }
-	$this->Experience = $tempArray;
+	$this->Experience[] = $tempArray;
 }
 
 public function setSkills(array $skills) {
@@ -138,11 +146,11 @@ public function getEducation() {
 }
 
 public function getExperience() {
-
+	return $this->Experience;
 }
 
 public function getSkills() {
-	
+	return $this->Skills;
 }
 
 }
