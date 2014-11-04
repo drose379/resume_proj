@@ -14,22 +14,20 @@ public function LocationFormatted() {
 
 public function EducationFormatted() {
 	foreach ($this->Education as $education) {
+		$Names[] = "<h3>" . $education["Name"] . "</h3>";
 	foreach ($education as $key => $value) {
-		if (isset($value)) {
-			$outerLoop[] = $key;
-		}
-		if (is_array($value)) {
-			foreach ($value as $v) {
-				$innerLoop[] = $v;
-			}
-		}
+		if ($key === "Name") {unset($key);}
 		else {
-			$innerLoop[] = $value;
+		if (isset($value)) {
+			$keys[] = $key;
+			$Names[] = implode($keys);
+			$keys = null;
+		}
 		}
 	}
 	}
 	
-	return implode($outerLoop);
+	return implode($Names);
 }
 
 
