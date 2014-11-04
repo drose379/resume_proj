@@ -7,10 +7,9 @@ class HTMLResume extends Resume {
 public function LocationFormatted() {
 	$Items = [];
 	foreach ($this->Location as $key => $value) {
-		$Items[] = "<b>" . $key . "</b>" . ": ";
-		$Items[] = $value . " | ";
+		$Items[] = "<b>" . $key . "</b>" . ": " . $value;
 	}
-	return implode("",$Items);
+	return implode(" | ",$Items);
 }
 
 public function EducationFormatted() {
