@@ -20,8 +20,7 @@ $Resume = new HTMLResume (array (
 	)
 );
 
-$Display->attach("Name",$Resume->getName());
-$Display->attach("Location",$Resume->LocationFormatted());
+$Display->attach("Location", $Resume->LocationFormatted());
 echo $Display->view();
 
 

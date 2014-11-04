@@ -31,9 +31,9 @@ public function NoNumberValid($value) {
 		}
 	}
 	else {
-	if (! is_string($value)) {throw new Exception("Value must be a string");}
+		if (! is_string($value)) {throw new Exception("Value must be a string");}
 	
-	if (preg_match('/([0-9]+)/', $value) === 1) {
+		if (preg_match('/([0-9]+)/', $value) === 1) {
 		throw new Exception("String should not contain numbers");
 	}
 	}
