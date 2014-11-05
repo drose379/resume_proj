@@ -14,15 +14,13 @@ public function LocationFormatted() {
 
 public function EducationFormatted() {
 	foreach ($this->Education as $education) {
-		$fullInfo[] = "<h3 class='headerUnderlined'>" . "<i>" . $education["Name"] . "</i>" . "</h3>";
+		$fullInfo[] = "<h3 class='headerUnderlined'>" . $education["Name"] . "</h3>";
 		$fullInfo[] = "<ul>";
 		unset($education["Name"]);
 	foreach ($education as $key => $value) {
 		if (isset($value)) {
 			$fullInfo[] = "<li>";
-			$keys[] = "<b>" . $key . "</b>";
-			$fullInfo[] = implode("",$keys);
-			$keys = null;
+			$fullInfo[] = "<h4>" . $key . "</h4>";
 			if (is_array($value)) {
 					$fullInfo[] = "<ul>";
 				foreach($value as $v) {
@@ -39,7 +37,6 @@ public function EducationFormatted() {
 	}
 		$fullInfo[] = "</ul>";
 	}
-
 	return implode("",$fullInfo);
 }
 
