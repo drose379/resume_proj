@@ -13,31 +13,32 @@ public function LocationFormatted() {
 }
 
 public function EducationFormatted() {
+	$fullInfo = "";
 	foreach ($this->Education as $education) {
-		$fullInfo[] = "<h3 class='headerUnderlined'>" . $education["Name"] . "</h3>";
-		$fullInfo[] = "<ul>";
+		$fullInfo .= "<h3 class='headerUnderlined'>" . $education["Name"] . "</h3>";
+		$fullInfo .= "<ul>";
 		unset($education["Name"]);
 	foreach ($education as $key => $value) {
 		if (isset($value)) {
-			$fullInfo[] = "<li>";
-			$fullInfo[] = "<h4>" . $key . "</h4>";
+			$fullInfo .= "<li>";
+			$fullInfo .= "<h4>" . $key . "</h4>";
 			if (is_array($value)) {
-					$fullInfo[] = "<ul>";
+					$fullInfo .= "<ul>";
 				foreach($value as $v) {
-					$fullInfo[] = "<li>" . $v . "</li>";
+					$fullInfo .= "<li>" . $v . "</li>";
 				}
-					$fullInfo[] = "</ul>";
+					$fullInfo .= "</ul>";
 			}
 			else {
-				$fullInfo[] = "<ul>";
-				$fullInfo[] = "<li>" . $value . "</li>";
-				$fullInfo[] = "</ul>";
+				//$fullInfo .= "<ul>";
+				$fullInfo .= "<li>" . $value . "</li>";
+				//$fullInfo .= "</ul>";
 			}
 		}
 	}
-		$fullInfo[] = "</ul>";
+		$fullInfo .= "</ul>";
 	}
-	return implode("",$fullInfo);
+	return $fullInfo;	
 }
 
 
