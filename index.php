@@ -11,7 +11,7 @@ $Resume = new HTMLResume (array (
 	"Tele" => "792-882-4431",
 	"Location" => array('Country' => 'United States' , 'State' => 'Texas' , 'City' => 'Fort Worth' , 'Address' => '15 Long Blvd'),
 	"Education" =>array(
-				 array("Name" => 'X High School','YearsOfAttendance' => '2010-2014' , 'Activities' => array('Hockey','Lacrosse','Student Council')),
+				 array("Name" => 'Fairfield High School','YearsOfAttendance' => '2010-2014' , 'Activities' => array('Hockey','Lacrosse','Student Council')),
 				 array("Name" => 'University of Miami','YearsOfAttendance' => '2014-2018','Activities' => array('Computer club','Ultimate Frisbee'), "Major" => 'Computer Science', "Degree" => "Masters")),
 	"WorkExperience" =>array( 
 		array("YearsOfEmployment" => "2005-Present" , "Position" => "Lead Software Engineer" , "JobDescription" => "Program various aplications and websites." , "CompanyInfo" => array("Name" => "IRC Software" , "Telephone" => "554-223-4342")),
