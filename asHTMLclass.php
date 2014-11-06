@@ -30,9 +30,9 @@ public function EducationFormatted() {
 					$fullInfo .= "</ul>";
 			}
 			else {
-				//$fullInfo .= "<ul>";
+				$fullInfo .= "<ul>";
 				$fullInfo .= "<li>" . $value . "</li>";
-				//$fullInfo .= "</ul>";
+				$fullInfo .= "</ul>";
 			}
 		}
 	}
@@ -41,5 +41,31 @@ public function EducationFormatted() {
 	return $fullInfo;	
 }
 
+public function WorkFormatted() {
+	$fullInfo = "";
+	foreach ($this->Experience as $experience) {
+		$fullInfo .= "<h3>Company Name: " . $experience["CompanyInfo"]["Name"] . "</h3>";
+		$fullInfo .= "<ul>";
+		foreach ($experience as $key => $value) {
+			if (isset($value)) {
+				$fullInfo .= "<li>";
+				$fullInfo .= "<h4>" . $key . "</h4>";
+				if (is_array($value)) {
+					$fullInfo .= "<ul>";
+					foreach ($value as $v) {
+						$fullInfo .= "<li>" .$v ."</li>";
+					}
+					$fullInfo .= "</ul>";
+				} else {
+				$fullInfo .= "<ul>";
+				$fullInfo .= "<li>" . $value . "</li>";
+				$fullInfo .= "</ul>";
+				}
+			}
+		}
+		$fullInfo .= "</ul>";
+	}
+	return $fullInfo;
+}
 
 }

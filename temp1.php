@@ -11,7 +11,10 @@ $HTML = <<< HTML
 <h3 class='centerHeading'>$Tele</h3>
 <p class='location'><i>Location: </i>$Location</p>
 
+<h2>Education</h2>
 $Education
+<h2>Work Experience</h2>
+$Work
 
 </body>
 </html>
