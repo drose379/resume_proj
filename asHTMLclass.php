@@ -4,6 +4,8 @@ include_once 'getClass.php';
 
 class HTMLResume extends Resume {
 
+protected $ExperienceTitle;
+
 public function LocationFormatted() {
 	$Items = [];
 	foreach ($this->Location as $key => $value) {
@@ -41,31 +43,35 @@ public function EducationFormatted() {
 	return $fullInfo;	
 }
 
+
 public function WorkFormatted() {
-	$fullInfo = "";
 	foreach ($this->Experience as $experience) {
-		$fullInfo .= "<h3>Company Name: " . $experience["CompanyInfo"]["Name"] . "</h3>";
-		$fullInfo .= "<ul>";
-		foreach ($experience as $key => $value) {
-			if (isset($value)) {
-				$fullInfo .= "<li>";
-				$fullInfo .= "<h4>" . $key . "</h4>";
-				if (is_array($value)) {
-					$fullInfo .= "<ul>";
-					foreach ($value as $v) {
-						$fullInfo .= "<li>" .$v ."</li>";
+		$this->titleMaker($experience,"CompanyInfo","Name");
+	}
+	return $this->ExperienceTitle;
+}
+
+public function titleMaker($masterArray,$subArray,$titleKey) {
+	foreach ($masterArray as $key => $value) {
+		if (isset($subArray)) {
+			if ($key === $subArray) {
+				foreach ($value as $innerKey => $innerValue) {
+					if ($innerKey === $titleKey) {
+						$Title = $value[$innerKey];
 					}
-					$fullInfo .= "</ul>";
-				} else {
-				$fullInfo .= "<ul>";
-				$fullInfo .= "<li>" . $value . "</li>";
-				$fullInfo .= "</ul>";
 				}
 			}
+		} else {
+			if ($key === $titleKey) {
+				$Title = $masterArray[$key];
+			}
 		}
-		$fullInfo .= "</ul>";
 	}
-	return $fullInfo;
+	$this->generalFormatter($masterArray,$Title);
+}
+
+public function generalFormatter($array, $title) {
+	$this->ExperienceTitle = $title;
 }
 
 }
