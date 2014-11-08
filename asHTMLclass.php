@@ -4,7 +4,6 @@ include_once 'getClass.php';
 
 class HTMLResume extends Resume {
 
-protected $Experience;
 
 public function LocationFormatted() {
 	$Items = [];
@@ -46,9 +45,9 @@ public function EducationFormatted() {
 
 public function WorkFormatted() {
 	foreach ($this->Experience as $experience) {
-		$this->titleMaker($experience,"CompanyInfo","Name");
+	list($title,$array) = $this->titleMaker($experience,"CompanyInfo","Name");
 	}
-	return $this->Experience;
+	//call generalFormatter	
 }
 
 public function titleMaker($masterArray,$subArray,$titleKey) {
@@ -56,12 +55,11 @@ public function titleMaker($masterArray,$subArray,$titleKey) {
 		$Title = $masterArray[$subArray][$titleKey];
 		unset($masterArray[$subArray][$titleKey]);
 	}
-	$this->generalFormatter($masterArray,$Title);
+	return [$Title, $masterArray];
 }
 
 public function generalFormatter($array, $title) {
-	$this->Experience = $title;
-	var_dump($array);
+
 }
 
 }
