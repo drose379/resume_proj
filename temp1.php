@@ -15,6 +15,8 @@ $HTML = <<< HTML
 $Education
 <h2>Work Experience</h2>
 $Work
+<h2>Special Skills</h2>
+$Skills
 
 </body>
 </html>
