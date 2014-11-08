@@ -17,7 +17,7 @@ $Resume = new HTMLResume (array (
 		array("YearsOfEmployment" => "2005-Present" , "Position" => "Lead Software Engineer" , "JobDescription" => "Program various aplications and websites." , "CompanyInfo" => array("Name" => "IRC of USA" , "Telephone" => "554-223-4342")),
 		),
 	"Skills" => array(
-	 array("Web Development (PHP Object Oriented)" , "Database Management (MYSQL and MYSQLI)")
+	 array( "Skill" => "Web Development (PHP Object Oriented)" , "Skill 2" => "Database Management (MYSQL and MYSQLI)")
 	 )
 	)
 );

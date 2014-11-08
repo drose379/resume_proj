@@ -32,7 +32,7 @@ public function WorkFormatted() {
 
 public function SkillsFormatted() {
 	foreach ($this->Skills as $skills) {
-		list($output) = $this->generalFormatter($skills,null);
+		list($output) = $this->generalFormatter($skills,null);	
 	}
 	return $output;
 }
@@ -53,7 +53,7 @@ public function generalFormatter($array, $title) {
 	$fullInfo .= "<h3 class='headerUnderlined'>" . $title . "</h3>";
 		foreach ($array as $key => $value) {
 			$fullInfo .= "<ul>";
-			if (isset($key,$value)) {
+			if (isset($value)) {
 				$fullInfo .= "<li>";
 				$fullInfo .= "<h4>" . $key . "</h4>";
 				if (is_array($value)) {
