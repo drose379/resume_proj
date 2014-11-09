@@ -2,7 +2,7 @@
 
 include_once 'getClass.php';
 
-class HTMLResume extends Resume {
+class FormatResume extends Resume {
 
 
 public function LocationFormatted() {
@@ -16,7 +16,7 @@ public function LocationFormatted() {
 public function EducationFormatted() {
 	foreach ($this->Education as $education) {
 		list($array,$title) = $this->titleMaker($education,null,"Name");
-		list($output) = $this->generalFormatter($array,$title);
+		$output = $this->generalFormatter($array,$title);
 		$outputArray[] = $output;
 	}
 	return implode($outputArray);
@@ -25,15 +25,13 @@ public function EducationFormatted() {
 public function WorkFormatted() {
 	foreach ($this->Experience as $experience) {
 		list($array,$title) = $this->titleMaker($experience,"CompanyInfo","Name");
-		list($output) = $this->generalFormatter($array,$title);
+		$output = $this->generalFormatter($array,$title);
 	}
 	return $output;
 }
 
 public function SkillsFormatted() {
-	foreach ($this->Skills as $skills) {
-		list($output) = $this->generalFormatter($skills,null);	
-	}
+	$output = $this->generalFormatter($this->Skills,null);	
 	return $output;
 }
 
@@ -51,11 +49,11 @@ public function titleMaker($masterArray,$subArray,$titleKey) {
 public function generalFormatter($array, $title) {
 	$fullInfo = "";
 	$fullInfo .= "<h3 class='headerUnderlined'>" . $title . "</h3>";
+	$fullInfo .= "<ul>";
 		foreach ($array as $key => $value) {
-			$fullInfo .= "<ul>";
 			if (isset($value)) {
 				$fullInfo .= "<li>";
-				$fullInfo .= "<h4>" . $key . "</h4>";
+				if (! is_int($key)) {$fullInfo .= "<h4>" . $key . "</h4>";}
 				if (is_array($value)) {
 					$fullInfo .= "<ul>";
 					foreach ($value as $v) {
@@ -64,14 +62,13 @@ public function generalFormatter($array, $title) {
 					$fullInfo .= "</ul>";
 				} 
 				else {
-					$fullInfo .= "<ul>";
-					$fullInfo .= "<li>" . $value . "</li>";
-					$fullInfo .= "</ul>";
+					$fullInfo .= "<p>" . $value . "</p>";
 				}
+				$fullInfo .= "</li>";
 			}
-			$fullInfo .= "</ul>";
 		}
-		return [$fullInfo];
+		$fullInfo .= "</ul>";
+		return $fullInfo;
 }
 
 }
