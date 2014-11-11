@@ -5,6 +5,8 @@ require('viewEngine.php');
 require('formatClass.php');
 
 
+
+
 $Display = new viewEngine('temp1.php'); 
 
 $Resume = new FormatResume ($_POST);
