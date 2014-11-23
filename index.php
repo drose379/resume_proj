@@ -20,6 +20,8 @@ catch (Exception $conEx) {
 $Display = new viewEngine('temp1.php'); 
 $Resume = new FormatResume ($_POST);
 $Insert = new insertClass($dbc);
+$Insert->addResume($Resume);
+//To save a resume, Call the insertClass save() function and pass it the $Resume object.
 
 
 
