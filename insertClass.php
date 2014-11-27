@@ -35,6 +35,23 @@ public function addLocation($Resume) {
 	return $ID;
 }
 
+public function addSkills($Resume) {
+	foreach ($Resume->getSkills() as $skill) {
+		$stmt = $this->con->prepare("INSERT INTO skills (skill) VALUES (:skill)");
+		$stmt->bindParam(':skill' $skill);
+		$stmt->execute();
+
+		$ID[] = $this->con->lastInsertID();
+
+	}
+	return $ID;
+	//use foreach($ID when inserting to intersection table)
+}
+
+public function addEducation($Resume) {
+	
+}
+
 public function getBasics($Resume) {
 	$Name = $Resume->getName();
 
