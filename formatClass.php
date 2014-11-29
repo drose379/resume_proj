@@ -3,7 +3,7 @@
 include_once 'getClass.php';
 
 class FormatResume extends Resume {
-
+    
 
 public function LocationFormatted() {
 	$Items = [];

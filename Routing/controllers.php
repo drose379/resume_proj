@@ -1,22 +1,27 @@
 <?php
 
 require "View/viewEngine.php";
+require 'getClass.php';
+require 'formatClass.php';
 
 class controllers {
 	
-//THIS CONTROLLER SHOULD CHECK FOR POST AND SEND THE POST DATA OFF TO ANOTHER METHOD. MAKE A METHOD INSIDE THIS CLASS TO HANDLE POST. EX.) $THIS->METHOD.
 public static function newResume() {
     if ($_SERVER["REQUEST_METHOD"] !== "POST") {
         $viewEngine = new viewEngine('View/formTemplate.php');
         echo $viewEngine->view();
     }
     else {
-        self::formatResume();
+        self::viewResume();
     }
 }
     
-public static function formatResume() {
-   echo "Post is submitted guy"; 
+public static function viewResume() {
+    //echo "Post is submitted guy";
+    $Resume = new FormatResume($_POST);
+    $viewEngine = new viewEngine('View/resumeTemplate.php');
+    $viewEngine->attach("resumeObject" , $Resume);
+    echo $viewEngine->view();
 }
     
 }
