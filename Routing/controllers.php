@@ -24,4 +24,13 @@ public static function viewResume() {
     echo $viewEngine->view();
 }
     
+public static function saveResume() {
+    //Create a new DB save class object and use it with $_POST array.
+    //Grab the last insert id and tell the user their resumes ID number.
+    //Save method must be passed a $RESUME object.
+    $Resume = new Resume($_POST);
+    $Insert = new insertClass(/*PDO DB CONNECTION*/);
+    $Insert->Save($Resume);
+}
+    
 }

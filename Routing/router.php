@@ -21,7 +21,7 @@ require 'controllers.php';
 
 class Router {
 	
-protected $routes = ["/" => ["controllers","newResume"], "/resume/new" => ["controllers","newResume"] ];    
+protected $routes = ["/" => ["controllers","newResume"], "/resume/new" => ["controllers","newResume"], "/resume/save" => ["controllers","saveResume"] ];    
 
 public function match($url) {
     foreach ($this->routes as $pattern => $action) {

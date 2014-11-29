@@ -7,6 +7,9 @@ protected $con;
 public function __construct($dbc) {
 	$this->con = $dbc;
 }
+    
+//ADD A METHOD THAT CALLS ALL OF THE DB METHODS. EX.) PUBLIC FUNCTION SAVE() WILL CALL ADDLOCATION AND ADDSKILLS... ETC..
+//SAVE METHOD NEEDS TO BE PASSED A $RESUME OBJECT. 
 
 public function addPhone($Resume) {
 	$Tele = $Resume->getTele();
