@@ -1,5 +1,7 @@
 <?php
 
+$BasePath = BASEPATH;
+
 $HTML = <<< HTML
 <!DOCTYPE html>
 <html>
@@ -8,7 +10,7 @@ $HTML = <<< HTML
 </head>
 <body>
 
-<form action="index.php/resume/new" method="POST">
+<form action='$BasePath/resume/new' method="POST">
 	<h4>General Info</h4>
 	Name: <input type='text' name="Name" />
 	Telephone Number: <input type='text' name='Tele' />

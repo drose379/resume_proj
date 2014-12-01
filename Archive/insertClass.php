@@ -1,17 +1,16 @@
 <?php
 
 class insertClass {
-#================================================================================================================================    
-#ADD A METHOD THAT CALLS ALL OF THE DB METHODS. EX.) PUBLIC FUNCTION SAVE() WILL CALL ADDLOCATION AND ADDSKILLS... ETC..
-#SAVE METHOD NEEDS TO BE PASSED A $RESUME OBJECT.     
-#================================================================================================================================
-    
+
 protected $con;
 
 public function __construct($dbc) {
 	$this->con = $dbc;
 }
     
+//ADD A METHOD THAT CALLS ALL OF THE DB METHODS. EX.) PUBLIC FUNCTION SAVE() WILL CALL ADDLOCATION AND ADDSKILLS... ETC..
+//SAVE METHOD NEEDS TO BE PASSED A $RESUME OBJECT. 
+
 public function addPhone($Resume) {
 	$Tele = $Resume->getTele();
 
@@ -20,8 +19,7 @@ public function addPhone($Resume) {
 	$stmt->execute();
     
     #Insert the Tele number into the resume table
-    $stmt = $this->con->prepare("INSERT INTO resume (phone) VALUES (:tele)");
-    $stmt->bindParam(':tele',$tele);
+	#return $Tele; DELETE
 }
 
 public function addLocation($Resume) {
@@ -38,15 +36,33 @@ public function addLocation($Resume) {
 	$stmt->execute();
 	$ID = $this->con->lastInsertId();
     
-    $stmt = $this->con->prepare("INSERT INTO resume (location) VALUES (:locationID)");
-    $stmt->bindParam(':locationID',$ID);
+    #Insert the ID into the Resume table
+	#return $ID; DELETE
 }
     
 public function addResume($Resume) {
     # $this->addName();
 	# $this->addPhone();
 	# $this->addLocation();
+	//insert $ID from location method into resume intersection table
+	//To get return values, $LocID = $this->addLocation();
 }
 
+public function addSkills($Resume) {
+	foreach ($Resume->getSkills() as $skill) {
+		$stmt = $this->con->prepare("INSERT INTO skills (skill) VALUES (:skill)");
+		$stmt->bindParam(':skill' $skill);
+		$stmt->execute();
+
+		$ID[] = $this->con->lastInsertID();
+
+	}
+	return $ID;
+	//use foreach($ID when inserting to intersection table)
+}
+
+public function addEducation($Resume) {
+	
+}
 
 }

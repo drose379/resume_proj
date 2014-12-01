@@ -1,5 +1,7 @@
 <?php
 
+$BasePath = BASEPATH;
+
 $HTML = <<< HTML
 <!DOCTYPE html>
 <html>
@@ -15,7 +17,7 @@ $HTML = <<< HTML
 {$resumeObject->WorkFormatted()}
 {$resumeObject->SkillsFormatted()}
 
-<a href='/oop_prac/resume_proj/index.php/resume/save'><h4>Save this resume</h4></a>
+<a href='$BasePath/resume/save'><h4>Save this resume</h4></a>
 
 </body>
 </html>
