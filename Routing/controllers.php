@@ -46,7 +46,7 @@ public static function saveResume() {
     //Save method must be passed a $RESUME object.
     $Resume = new Resume($_POST);
     $Insert = new insertClass($this->getConnection());
-    $Insert->Save($Resume);
+    #$Insert->Save($Resume);
 }
     
 }
