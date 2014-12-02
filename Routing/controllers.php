@@ -19,12 +19,13 @@ public static function newResume() {
     }
 }
     
-public static function viewResume() {
-    //echo "Post is submitted guy";
+public static function submitResume() {
     $Resume = new FormatResume($_POST);
     $viewEngine = new viewEngine('View/resumeTemplate.php');
     $viewEngine->attach("resumeObject" , $Resume);
     echo $viewEngine->view();
+    #Save the resume to DB
+    self::saveResume($Resume);
 }
     
 public function setConnection() {
@@ -38,15 +39,9 @@ public function getConnection() {
     return $this->PDOconnect;
 }
     
-public static function saveResume() {
-    echo "Reached SaveResume()";
-    //Call the PDO setter to create the connection to pass.
-    //Create a new DB save class object and use it with $_POST array.
-    //Grab the last insert id and tell the user their resumes ID number.
-    //Save method must be passed a $RESUME object.
-    $Resume = new Resume($_POST);
+public function saveResume($Resume) {
     $Insert = new insertClass($this->getConnection());
-    #$Insert->Save($Resume);
+    $Insert->Save($Resume);
 }
     
 }

@@ -12,6 +12,18 @@ public function __construct($dbc) {
 	$this->con = $dbc;
 }
     
+public function save($Resume) {
+    $this->addResume($Resume);
+}
+    
+public function addName($Resume) {
+    $Name = $Resume->getName();
+    
+    $stmt = $this->con->prepare("INSERT INTO resume (name) VALUES (:name) ");
+    $stmt->bindParam(':tele','$Name');
+    $stmt->execute();
+}
+    
 public function addPhone($Resume) {
 	$Tele = $Resume->getTele();
 
@@ -43,9 +55,9 @@ public function addLocation($Resume) {
 }
     
 public function addResume($Resume) {
-    # $this->addName();
-	# $this->addPhone();
-	# $this->addLocation();
+    $this->addName($Resume);
+	$this->addPhone($Resume);
+	$this->addLocation($Resume);
 }
 
 
