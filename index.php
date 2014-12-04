@@ -9,3 +9,7 @@ $router = new Router;
 $route = $_SERVER["PATH_INFO"] . "/";
 
 $router->run($route);
+
+/*
+* Testing autoloader on autoload.php
+*/
