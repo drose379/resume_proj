@@ -17,9 +17,11 @@
 //Regex Explanation: # === delemeter, ^ === start of string , / === a slash at the end of the pattern ? === makes the slash optional , $ === end of string , # === ending delemeter , i === case insensitive. Overview: If the pattern is inside the $url either with or without a trailing slash, pass. $matches gives an array of which part of the haystack matches the needle. ?<> to specify a sub-pattern in the pattern.
 #================================================================================================================================
 
-require 'controllers.php';
+#require 'Routing/controllers.php';
 
-class Router {
+namespace drose379\Routing;
+
+class router {
 	
 protected $routes = ["/" => ["controllers","newResume"], "/resume/new" => ["controllers","saveResume"] ];    
 

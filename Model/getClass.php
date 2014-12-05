@@ -1,6 +1,8 @@
 <?php
 
-class Resume {
+namespace drose379\Model;
+
+class getClass {
 	protected $Name;
 	protected $Tele;
 	protected $Location = array("Country" => null , "State" => null , "City" => null , "Address" => null);

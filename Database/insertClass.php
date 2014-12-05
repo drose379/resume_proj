@@ -1,5 +1,7 @@
 <?php
 
+namespace drose379\Database;
+
 class insertClass {
 #================================================================================================================================    
 #ADD A METHOD THAT CALLS ALL OF THE DB METHODS. EX.) PUBLIC FUNCTION SAVE() WILL CALL ADDLOCATION AND ADDSKILLS... ETC..

@@ -1,5 +1,7 @@
 <?php
 
+namespace drose379\View;
+
 class viewEngine {
 	protected $Template = '';
 	protected $Content = array();

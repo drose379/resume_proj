@@ -1,8 +1,10 @@
 <?php
 
-include_once 'getClass.php';
+#include_once 'getClass.php';
 
-class FormatResume extends Resume {
+namespace drose379\Model;
+
+class formatClass extends getClass {
     
 
 public function LocationFormatted() {

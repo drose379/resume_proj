@@ -1,9 +1,11 @@
 <?php
 
-require "View/viewEngine.php";
-require 'getClass.php';
-require 'formatClass.php';
-require 'Database/insertClass.php';
+#require "View/viewEngine.php";
+#require 'getClass.php';
+#require 'formatClass.php';
+#require 'Database/insertClass.php';
+
+namespace drose379\Routing;
 
 class controllers {
     

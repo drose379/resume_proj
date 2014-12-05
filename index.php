@@ -12,4 +12,5 @@ $router->run($route);
 
 /*
 * Testing autoloader on autoload.php
+* Require autoloader file before anything else on idex.
 */
